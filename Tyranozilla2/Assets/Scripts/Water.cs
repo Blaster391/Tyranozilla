@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Water : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject m_boatPrefab;
+
     void Start()
     {
         
@@ -23,11 +25,13 @@ public class Water : MonoBehaviour
 
         if(player != null)
         {
-
+            player.GameOver();
         }
         else if(enemy != null)
         {
-
+            var boat = Instantiate(m_boatPrefab);
+            boat.transform.position = enemy.transform.position;
+            Destroy(collision.gameObject);
         }
         else
         {

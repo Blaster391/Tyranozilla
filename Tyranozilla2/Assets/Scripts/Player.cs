@@ -43,6 +43,11 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float m_targetRange = 1.0f;
 
+    [SerializeField]
+    private int m_health = 5;
+
+    private bool m_gameOver = false;
+
     private float m_currentUseCooldown = 0.0f;
 
     private float m_currentAnimationTick = 0.0f;
@@ -68,6 +73,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(m_gameOver)
+        {
+            return;
+        }
+
         Vector2 lateralDirection = Vector2.zero;
         if(Input.GetKey(KeyCode.A))
         {
@@ -139,7 +149,7 @@ public class Player : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && m_currentUseCooldown < 0.0f)
             {
-                m_heldObject.Use();
+                m_heldObject.Use(GetTargetPosition());
                 m_currentUseCooldown = m_useCooldown;
             }
             else if(Input.GetMouseButtonDown(1))
@@ -150,13 +160,19 @@ public class Player : MonoBehaviour
 
         if(m_heldObject != null)
         {
-            if(IsFacingLeft())
+            float cooldownLerp = (Mathf.Max(0.0f, m_currentUseCooldown) / m_useCooldown);
+
+            if (IsFacingLeft())
             {
                 m_heldObject.transform.position = m_leftHolder.transform.position;
+                m_heldObject.GetComponentInChildren<SpriteRenderer>().flipX = false;
+                m_heldObject.transform.rotation = Quaternion.Euler(0, 0, cooldownLerp * 180.0f);
             }
             else
             {
                 m_heldObject.transform.position = m_rightHolder.transform.position;
+                m_heldObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+                m_heldObject.transform.rotation = Quaternion.Euler(0, 0, cooldownLerp * -180.0f);
             }
         }
     }
@@ -268,6 +284,20 @@ public class Player : MonoBehaviour
 
         Vector2 targetPosition = myPosition + (targetDirection * targetDistance);
         return targetPosition;
+    }
+
+    public void GameOver()
+    {
+        m_gameOver = true;
+    }
+
+    public void TakeDamage()
+    {
+        m_health -= 1;
+        if(m_health <= 0)
+        {
+            GameOver();
+        }
     }
 
     public static Vector2 MouseToWorldPosition()

@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Flower : Grabable
 {
-    private bool m_atShop = false;
 
-    public override void Use()
+    public override void Use(Vector2 _targetPosition)
     {
-        if(m_atShop)
+        var objects = Physics2D.OverlapPointAll(_targetPosition);
+        foreach(var obj in objects)
         {
-            Destroy(gameObject);
+            if(obj.GetComponent<Shop>() != null)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -25,13 +28,4 @@ public class Flower : Grabable
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-
-    }
 }

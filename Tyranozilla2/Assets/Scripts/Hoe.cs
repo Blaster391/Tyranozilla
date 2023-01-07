@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Hoe : Grabable
 {
-    public override void Use()
+    public override void Use(Vector2 _targetPosition)
     {
-
+        var results = Physics2D.RaycastAll(_targetPosition, Vector2.down);
+        foreach (var result in results)
+        {
+            var plant = result.collider.GetComponent<Plant>();
+            if (plant != null)
+            {
+                plant.Work();
+            }
+        }
     }
 
     protected override void Start()

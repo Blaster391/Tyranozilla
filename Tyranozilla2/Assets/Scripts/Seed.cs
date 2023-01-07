@@ -10,9 +10,16 @@ public class Seed : Grabable
     [SerializeField]
     private float m_seedRange = 1.0f;
 
-    public override void Use()
+    public override void Use(Vector2 _targetPosition)
     {
-        
+        var results = Physics2D.RaycastAll(transform.position, Vector2.down);
+        foreach (var result in results)
+        {
+            if (result.collider.tag == "dirt")
+            {
+                Plant();
+            }
+        }
     }
 
     protected override void Start()
@@ -40,10 +47,15 @@ public class Seed : Grabable
                 }
             }
 
-            var myPlant = Instantiate(m_plantPrefab);
-            myPlant.transform.position = transform.position + Vector3.up;
-            Destroy(gameObject);
+            Plant();
 
         }
+    }
+
+    private void Plant()
+    {
+        var myPlant = Instantiate(m_plantPrefab);
+        myPlant.transform.position = transform.position + Vector3.up;
+        Destroy(gameObject);
     }
 }

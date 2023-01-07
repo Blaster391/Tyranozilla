@@ -765,6 +765,54 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 1.5}
   m_EdgeRadius: 0
+--- !u!1 &601268229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 601268231}
+  - component: {fileID: 601268230}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &601268230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601268229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41da5212e1779e44866bae4f07ef8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_enemyPrefab: {fileID: 4342336032750317953, guid: 567248af779a33a45b6052d88413dc01, type: 3}
+  m_spawnRange: 20
+  m_startingTimer: 10
+  m_endingTimer: 10
+  m_rampTime: 1
+--- !u!4 &601268231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 601268229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.92, y: 17.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943881034
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49371d2e7f1fea24cb01cb4145fbdd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_boatPrefab: {fileID: 1266980774759933056, guid: 95231d372858d4d44a0c5066d42fe4bd, type: 3}
 --- !u!61 &943881038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1041,6 +1090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49371d2e7f1fea24cb01cb4145fbdd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_boatPrefab: {fileID: 1266980774759933056, guid: 95231d372858d4d44a0c5066d42fe4bd, type: 3}
 --- !u!61 &1100561928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1239,7 +1289,7 @@ GameObject:
   - component: {fileID: 1423259306}
   - component: {fileID: 1423259309}
   - component: {fileID: 1423259308}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FlowerShope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1333,7 +1383,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.002693653, y: 0}
@@ -1889,9 +1939,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195131785, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 195131785, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.739
+      objectReference: {fileID: 0}
     - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_throwForce
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_pushForce
@@ -1899,7 +1957,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_targetRange
-      value: 0.75
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556903228, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1556903228, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.758
       objectReference: {fileID: 0}
     - target: {fileID: 2010983822091301684, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1948,6 +2014,10 @@ PrefabInstance:
     - target: {fileID: 2010983822091301686, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_Name
       value: Zilla
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010983822091301687, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7904f545367a652469836169db8a46f8, type: 3}

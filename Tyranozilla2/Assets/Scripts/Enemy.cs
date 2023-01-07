@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Enemy : Grabable
 {
-    public override void Use()
+    private Player m_player = null;
+
+    public override void Use(Vector2 _targetPosition)
     {
 
     }
@@ -12,6 +14,8 @@ public class Enemy : Grabable
     protected override void Start()
     {
         base.Start();
+
+        m_player = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame

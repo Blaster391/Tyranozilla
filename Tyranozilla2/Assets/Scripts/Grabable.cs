@@ -23,5 +23,5 @@ public abstract class Grabable : MonoBehaviour
         m_rigidbody.simulated = true;
     }
 
-    public abstract void Use();
+    public abstract void Use(Vector2 _targetPosition);
 }
