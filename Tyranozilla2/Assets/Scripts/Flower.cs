@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Flower : Grabable
 {
+    private bool m_atShop = false;
+
     public override void Use()
     {
-
+        if(m_atShop)
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected override void Start()
@@ -18,5 +23,15 @@ public class Flower : Grabable
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+
     }
 }

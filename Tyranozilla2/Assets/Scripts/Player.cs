@@ -37,9 +37,13 @@ public class Player : MonoBehaviour
     private float m_grabRange = 2.0f;
     [SerializeField]
     private float m_pushForce = 20.0f;
+    [SerializeField]
+    private float m_throwForce = 5.0f;
+
+    [SerializeField]
+    private float m_targetRange = 1.0f;
 
     private float m_currentUseCooldown = 0.0f;
-    private Vendor m_currentVendor = null;
 
     private float m_currentAnimationTick = 0.0f;
     private int m_currentAnimationFrame = 0;
@@ -56,6 +60,10 @@ public class Player : MonoBehaviour
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_renderer = GetComponent<SpriteRenderer>();
+
+        Physics2D.IgnoreLayerCollision(0, 8);
+        Physics2D.IgnoreLayerCollision(8, 8);
+        Physics2D.IgnoreLayerCollision(0, 9);
     }
 
     void Update()
@@ -155,17 +163,21 @@ public class Player : MonoBehaviour
 
     private void PickupObject()
     {
-        var objects = FindObjectsInRange();
+        var objects = Physics2D.OverlapPointAll(GetTargetPosition());
         Grabable closest = null;
         float closestDistance = 0.0f;
 
-        foreach (var grabable in objects)
+        foreach (var obj in objects)
         {
-            float distance = (grabable.transform.position - transform.position).sqrMagnitude;
-            if(closest == null || closestDistance > distance)
+            Grabable grabable = obj.GetComponent<Grabable>();
+            if(grabable != null)
             {
-                closest = grabable;
-                closestDistance = distance;
+                float distance = (obj.transform.position - transform.position).sqrMagnitude;
+                if (closest == null || closestDistance > distance)
+                {
+                    closest = grabable;
+                    closestDistance = distance;
+                }
             }
         }
 
@@ -174,15 +186,24 @@ public class Player : MonoBehaviour
             m_heldObject = closest;
             closest.OnPickup();
         }
-        else if(m_currentVendor != null)
+        else
         {
-            m_currentVendor.Vend(this);
+            foreach(var result in objects)
+            {
+                Vendor vendor = result.GetComponent<Vendor>();
+                if(vendor != null)
+                {
+                    vendor.Vend(this);
+                }
+
+            }
         }
+
     }
 
     private void PushObjects()
     {
-        var objects = FindObjectsInRange();
+        var objects = PushObjectsInRange();
         foreach(var grabable in objects)
         {
             Rigidbody2D targetRigidbody = grabable.GetComponent<Rigidbody2D>();
@@ -198,7 +219,7 @@ public class Player : MonoBehaviour
 
     }
 
-    private List<Grabable> FindObjectsInRange()
+    private List<Grabable> PushObjectsInRange()
     {
         List<Grabable> results = new List<Grabable>();
 
@@ -219,24 +240,39 @@ public class Player : MonoBehaviour
     private void ThrowObject()
     {
         m_heldObject.OnDrop();
+        Vector2 myPosition = transform.position;
+        Vector2 throwDirection = (GetTargetPosition() - myPosition);
 
-        Vector2 throwDirection = Vector2.zero;
-
-        if(throwDirection.x > 0.0f)
+        if (throwDirection.x > 0.0f)
         {
-            m_heldObject.transform.position = transform.position + Vector3.right * 2.0f;
+            m_heldObject.transform.position = transform.position + Vector3.right * 1.0f;
         }
         else
         {
-            m_heldObject.transform.position = transform.position + Vector3.left * 2.0f;
+            m_heldObject.transform.position = transform.position + Vector3.left * 1.0f;
         }
-        
+
+        m_heldObject.GetComponent<Rigidbody2D>().AddForce(throwDirection * m_throwForce, ForceMode2D.Impulse);
 
         m_heldObject = null;
     }
 
-    public void SetVendor(Vendor _vendor)
+    public Vector2 GetTargetPosition()
     {
-        m_currentVendor = _vendor;
+        Vector2 myPosition = transform.position;
+        Vector2 targetDirection = (MouseToWorldPosition() - myPosition);
+
+        float targetDistance = targetDirection.magnitude;
+        targetDirection.Normalize();
+        targetDistance = Mathf.Clamp(targetDistance, 0.0f, m_targetRange);
+
+        Vector2 targetPosition = myPosition + (targetDirection * targetDistance);
+        return targetPosition;
     }
+
+    public static Vector2 MouseToWorldPosition()
+    {
+        return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    }
+
 }

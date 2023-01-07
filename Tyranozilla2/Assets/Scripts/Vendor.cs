@@ -6,8 +6,6 @@ public class Vendor : MonoBehaviour
 {
     [SerializeField]
     private GameObject m_prefab;
-    [SerializeField]
-    private GameObject m_vendPosition;
 
     public void Vend(Player _player)
     {
@@ -20,27 +18,6 @@ public class Vendor : MonoBehaviour
         else
         {
             newObject.transform.position = _player.transform.position + Vector3.right * 1.0f;
-        }
-
-
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Player player = collision.GetComponent<Player>();
-        if(player != null)
-        {
-            player.SetVendor(this);
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Player player = collision.GetComponent<Player>();
-        if (player != null)
-        {
-            player.SetVendor(null);
         }
     }
 }
