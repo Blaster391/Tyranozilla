@@ -796,9 +796,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enemyPrefab: {fileID: 4342336032750317953, guid: 567248af779a33a45b6052d88413dc01, type: 3}
   m_spawnRange: 20
-  m_startingTimer: 10
+  m_startingTimer: 20
   m_endingTimer: 10
-  m_rampTime: 1
+  m_rampTime: 600
 --- !u!4 &601268231
 Transform:
   m_ObjectHideFlags: 0
@@ -923,7 +923,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.010393441}
+  m_Offset: {x: 0, y: -0.007072389}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -934,7 +934,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9792131}
+  m_Size: {x: 1, y: 0.9858552}
   m_EdgeRadius: 0
 --- !u!1 &1020059124
 GameObject:
@@ -1104,7 +1104,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.014038518}
+  m_Offset: {x: 0, y: -0.010013655}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1115,7 +1115,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.971923}
+  m_Size: {x: 1, y: 0.9799727}
   m_EdgeRadius: 0
 --- !u!212 &1100561929
 SpriteRenderer:
@@ -1947,9 +1947,13 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.739
       objectReference: {fileID: 0}
+    - target: {fileID: 1153111515, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_throwForce
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_pushForce

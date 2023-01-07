@@ -11,13 +11,15 @@ public class Vendor : MonoBehaviour
     {
         var newObject = Instantiate(m_prefab);
 
-        if(_player.IsFacingLeft())
+        Grabable grabable = newObject.GetComponent<Grabable>();
+        if (grabable != null)
         {
-            newObject.transform.position = _player.transform.position + Vector3.left * 1.0f;
+            _player.SetHeldObject(grabable);
         }
-        else
-        {
-            newObject.transform.position = _player.transform.position + Vector3.right * 1.0f;
-        }
+
+        float targetX = _player.GetTargetPosition().x;
+        targetX -= _player.transform.position.x;
+
+        newObject.transform.position = _player.transform.position + Vector3.right * targetX;
     }
 }

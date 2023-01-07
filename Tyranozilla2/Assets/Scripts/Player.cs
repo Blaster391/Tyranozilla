@@ -56,6 +56,12 @@ public class Player : MonoBehaviour
     private Rigidbody2D m_rigidbody = null;
     private SpriteRenderer m_renderer = null;
 
+    public void SetHeldObject(Grabable _heldItem)
+    {
+        m_heldObject = _heldItem;
+        _heldItem.OnPickup();
+    }
+
     public bool IsFacingLeft()
     {
         return !m_renderer.flipX;
@@ -132,7 +138,9 @@ public class Player : MonoBehaviour
             m_renderer.sprite = m_movementSprites[m_currentAnimationFrame];
         }
 
-        if(m_heldObject == null)
+        m_currentUseCooldown -= Time.deltaTime;
+
+        if (m_heldObject == null)
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -145,8 +153,6 @@ public class Player : MonoBehaviour
         }
         else
         {
-            m_currentUseCooldown -= Time.deltaTime;
-
             if (Input.GetMouseButtonDown(0) && m_currentUseCooldown < 0.0f)
             {
                 m_heldObject.Use(GetTargetPosition());
@@ -199,8 +205,7 @@ public class Player : MonoBehaviour
 
         if(closest != null)
         {
-            m_heldObject = closest;
-            closest.OnPickup();
+            SetHeldObject(closest);
         }
         else
         {
