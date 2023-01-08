@@ -365,7 +365,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.6, y: 1.11}
+  m_Size: {x: 1.6, y: 1.1}
   m_Direction: 1
 --- !u!114 &1153111516
 MonoBehaviour:
@@ -379,6 +379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e623fb853eba24fbae336db49a15c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_roarClip: {fileID: 0}
+  m_lowHealthRoarClip: {fileID: 0}
+  m_flapClip: {fileID: 0}
+  m_grabClip: {fileID: 0}
+  m_throwClip: {fileID: 0}
+  m_owClip: {fileID: 0}
+  m_rawrObject: {fileID: 0}
+  m_rawrCooldown: 0.25
   m_movementForce: 5000
   m_maxSpeed: 4
   m_jumpForce: 20
@@ -395,3 +403,6 @@ MonoBehaviour:
   m_useCooldown: 0.5
   m_grabRange: 2
   m_pushForce: 20
+  m_throwForce: 5
+  m_targetRange: 1
+  m_health: 5

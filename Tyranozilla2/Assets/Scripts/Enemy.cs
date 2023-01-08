@@ -27,6 +27,7 @@ public class Enemy : Grabable
     public override void Use(Vector2 _targetPosition)
     {
         m_gameMaster.PlayAudio(m_useClips, 0.5f, gameObject);
+        m_currentCooldown = m_attackCooldown;
     }
 
     protected void Start()

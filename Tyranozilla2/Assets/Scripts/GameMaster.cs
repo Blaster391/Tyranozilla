@@ -89,15 +89,19 @@ public class GameMaster : MonoBehaviour
     public void AddScore()
     {
         m_score++;
+
+        m_player.AddHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
+#if !UNITY_WEBGL
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
+#endif
 
         if (Input.GetKeyDown(KeyCode.R))
         {

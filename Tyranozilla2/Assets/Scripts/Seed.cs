@@ -35,16 +35,6 @@ public class Seed : Grabable
     {
         if(collision.gameObject.tag == "dirt")
         {
-            var overlaps = Physics2D.OverlapCircleAll(transform.position, m_seedRange);
-            foreach(var overlap in overlaps)
-            {
-                var plant = overlap.GetComponent<Plant>();
-                if(plant != null)
-                {
-                    return;
-                }
-            }
-
             Plant();
 
         }
@@ -52,6 +42,16 @@ public class Seed : Grabable
 
     private void Plant()
     {
+        var overlaps = Physics2D.OverlapCircleAll(transform.position, m_seedRange);
+        foreach (var overlap in overlaps)
+        {
+            var plant = overlap.GetComponent<Plant>();
+            if (plant != null)
+            {
+                return;
+            }
+        }
+
         var myPlant = Instantiate(m_plantPrefab);
         myPlant.transform.position = transform.position + Vector3.up;
         Destroy(gameObject);

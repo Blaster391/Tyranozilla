@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
     private AudioClip m_throwClip;
     [SerializeField]
     private AudioClip m_owClip;
+    [SerializeField]
+    private GameObject m_rawrObject;
+
+    [SerializeField]
+    private float m_rawrCooldown = 0.25f;
+
 
     [SerializeField]
     private float m_movementForce = 10.0f;
@@ -60,6 +66,8 @@ public class Player : MonoBehaviour
     private int m_health = 5;
 
     private float m_currentUseCooldown = 0.0f;
+    private float m_currentRawrCooldown = 0.0f;
+
 
     private float m_currentAnimationTick = 0.0f;
     private int m_currentAnimationFrame = 0;
@@ -103,6 +111,10 @@ public class Player : MonoBehaviour
         {
             return;
         }
+
+        m_currentRawrCooldown -= Time.deltaTime;
+
+        m_rawrObject.SetActive(m_currentRawrCooldown > 0.0f);
 
         Vector2 lateralDirection = Vector2.zero;
         if(Input.GetKey(KeyCode.A))
@@ -164,7 +176,7 @@ public class Player : MonoBehaviour
 
         if (m_heldObject == null)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && m_currentRawrCooldown < 0.0f)
             {
                 PushObjects();
             }
@@ -268,6 +280,8 @@ public class Player : MonoBehaviour
         {
             m_gameMaster.PlayAudio(m_roarClip, 1.0f, gameObject);
         }
+
+        m_currentRawrCooldown = m_rawrCooldown;
     }
 
     private List<Grabable> PushObjectsInRange()
@@ -326,6 +340,11 @@ public class Player : MonoBehaviour
     public void GameOver()
     {
         m_gameMaster.GameOver();
+    }
+
+    public void AddHealth()
+    {
+        m_health++;
     }
 
     public void TakeDamage()

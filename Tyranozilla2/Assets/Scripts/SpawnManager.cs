@@ -11,6 +11,9 @@ public class SpawnManager : MonoBehaviour
     private float m_spawnRange = 20.0f;
 
     [SerializeField]
+    private float m_gracePeriod = 20.0f;
+
+    [SerializeField]
     private float m_startingTimer = 10.0f;
     [SerializeField]
     private float m_endingTimer = 0.5f;
@@ -28,6 +31,12 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(m_gracePeriod > 0.0f)
+        {
+            m_gracePeriod -= Time.deltaTime;
+            return;
+        }
+
         m_timeSinceLastSpawn += Time.deltaTime;
         m_liveTime += Time.deltaTime;
         float spawnTime = Mathf.Lerp(m_startingTimer, m_endingTimer, m_liveTime / m_rampTime);
