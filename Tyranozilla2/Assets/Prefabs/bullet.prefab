@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_speed: 4
+  m_pewClip: {fileID: 8300000, guid: fcf48d0ae3a4fcf45a62d65fbfadc3f3, type: 3}
 --- !u!61 &3082172657941885104
 BoxCollider2D:
   m_ObjectHideFlags: 0

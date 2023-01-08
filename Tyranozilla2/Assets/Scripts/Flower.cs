@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Flower : Grabable
 {
+    [SerializeField]
+    private AudioClip m_sellClip;
+
     private GameMaster m_gameMaster = null;
     void Start()
     {
         m_gameMaster = FindObjectOfType<GameMaster>();
+
+ 
     }
     public override void Use(Vector2 _targetPosition)
     {
@@ -16,6 +21,7 @@ public class Flower : Grabable
         {
             if(obj.GetComponent<Shop>() != null)
             {
+                m_gameMaster.PlayAudio(m_sellClip, 1.0f, gameObject);
                 m_gameMaster.AddScore();
                 Destroy(gameObject);
             }

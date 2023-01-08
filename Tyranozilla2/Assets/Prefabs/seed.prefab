@@ -167,3 +167,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_plantPrefab: {fileID: 4014476174875019844, guid: 66056841c7d2a624e966d1791a034182, type: 3}
   m_seedRange: 0.2
+  m_plantClip: {fileID: 8300000, guid: da904584a206d7e4995ac52d4a534d1e, type: 3}

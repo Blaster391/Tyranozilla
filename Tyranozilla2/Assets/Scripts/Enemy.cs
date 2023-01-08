@@ -15,6 +15,9 @@ public class Enemy : Grabable
     [SerializeField]
     private float m_attackCooldown = 1.0f;
 
+    [SerializeField]
+    private List<AudioClip> m_useClips;
+
     private float m_currentCooldown = 0.0f;
 
     private SpriteRenderer m_renderer = null;
@@ -23,7 +26,7 @@ public class Enemy : Grabable
 
     public override void Use(Vector2 _targetPosition)
     {
-
+        m_gameMaster.PlayAudio(m_useClips, 0.5f, gameObject);
     }
 
     protected void Start()

@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_enemyPrefab: {fileID: 4342336032750317953, guid: 567248af779a33a45b6052d88413dc01, type: 3}
-  m_spawnRange: 20
+  m_spawnRange: 15
   m_startingTimer: 20
   m_endingTimer: 10
   m_rampTime: 600
@@ -888,7 +888,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 601268229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.92, y: 17.02, z: 0}
+  m_LocalPosition: {x: 4.88, y: 17.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2593,6 +2593,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1946315917}
   - component: {fileID: 1946315916}
+  - component: {fileID: 1946315918}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -2613,6 +2614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameOverPanel: {fileID: 575101055}
+  m_musicSource: {fileID: 1946315918}
+  m_gameOverClip: {fileID: 8300000, guid: df94055c13be2e3469336046c94efb37, type: 3}
+  m_audioSourcePrefab: {fileID: 5465187401831012397, guid: 32311f8cbdaebc4409ba9aa56b1ea0fb, type: 3}
   m_liveScoreText: {fileID: 1127034537}
   m_liveHPText: {fileID: 1474408679}
   m_scoreText: {fileID: 1695104157}
@@ -2633,6 +2637,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1946315918
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946315915}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 283f515a6d7f2ec4aad42ff0f6399e64, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2045862731
 GameObject:
   m_ObjectHideFlags: 0
@@ -2891,6 +2991,30 @@ PrefabInstance:
       propertyPath: m_targetRange
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_roarClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ee707d8ef842bc4386ca6035d67d104, type: 3}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_lowHealthRoarClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 157900dc5597a0048a133e802f698b64, type: 3}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_flapClip
+      value: 
+      objectReference: {fileID: 8300000, guid: dec3ad4a36efd314caeb33cebe49c30f, type: 3}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_grabClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a55b11d0e07154746b9c93a3970faa0f, type: 3}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_throwClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c81c010ba2bb4e74896f71a78ff0b952, type: 3}
+    - target: {fileID: 1153111516, guid: 7904f545367a652469836169db8a46f8, type: 3}
+      propertyPath: m_owClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 778ab6484e5f7d14cb50d9cfe19987a9, type: 3}
     - target: {fileID: 1556903228, guid: 7904f545367a652469836169db8a46f8, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.103

@@ -5,6 +5,19 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
+    private AudioClip m_roarClip;
+    [SerializeField]
+    private AudioClip m_lowHealthRoarClip;
+    [SerializeField]
+    private AudioClip m_flapClip;
+    [SerializeField]
+    private AudioClip m_grabClip;
+    [SerializeField]
+    private AudioClip m_throwClip;
+    [SerializeField]
+    private AudioClip m_owClip;
+
+    [SerializeField]
     private float m_movementForce = 10.0f;
 
     [SerializeField]
@@ -59,6 +72,8 @@ public class Player : MonoBehaviour
     {
         m_heldObject = _heldItem;
         _heldItem.OnPickup();
+
+        m_gameMaster.PlayAudio(m_grabClip, 1.0f, gameObject);
     }
 
     public bool IsFacingLeft()
@@ -106,6 +121,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             verticalDirection += Vector2.up;
+
+            m_gameMaster.PlayAudio(m_flapClip, 1.0f, gameObject);
         }
 
         m_rigidbody.AddForce(verticalDirection * m_jumpForce, ForceMode2D.Impulse);
@@ -243,6 +260,14 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(m_health == 1)
+        {
+            m_gameMaster.PlayAudio(m_lowHealthRoarClip, 1.0f, gameObject);
+        }
+        else
+        {
+            m_gameMaster.PlayAudio(m_roarClip, 1.0f, gameObject);
+        }
     }
 
     private List<Grabable> PushObjectsInRange()
@@ -281,6 +306,8 @@ public class Player : MonoBehaviour
         m_heldObject.GetComponent<Rigidbody2D>().AddForce(throwDirection * m_throwForce, ForceMode2D.Impulse);
 
         m_heldObject = null;
+
+        m_gameMaster.PlayAudio(m_throwClip, 1.0f, gameObject);
     }
 
     public Vector2 GetTargetPosition()
@@ -303,6 +330,8 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        m_gameMaster.PlayAudio(m_owClip, 1.0f, gameObject);
+
         m_health -= 1;
         if(m_health <= 0)
         {

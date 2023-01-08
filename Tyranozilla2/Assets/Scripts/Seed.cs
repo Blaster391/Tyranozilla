@@ -10,6 +10,9 @@ public class Seed : Grabable
     [SerializeField]
     private float m_seedRange = 1.0f;
 
+    [SerializeField]
+    private AudioClip m_plantClip;
+
     public override void Use(Vector2 _targetPosition)
     {
         var results = Physics2D.RaycastAll(transform.position, Vector2.down);
@@ -52,5 +55,7 @@ public class Seed : Grabable
         var myPlant = Instantiate(m_plantPrefab);
         myPlant.transform.position = transform.position + Vector3.up;
         Destroy(gameObject);
+
+        FindObjectOfType<GameMaster>().PlayAudio(m_plantClip, 1.0f, myPlant.gameObject);
     }
 }

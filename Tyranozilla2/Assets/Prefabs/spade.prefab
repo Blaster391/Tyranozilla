@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_flowerPrefab: {fileID: 7190555038931938675, guid: 6d1a75889f81e5143a7ca9895800e0bd, type: 3}
+  m_swingClip: {fileID: 8300000, guid: 1b2bf10da267d7248a15f3ae953925d3, type: 3}
 --- !u!70 &7097190004909290434
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

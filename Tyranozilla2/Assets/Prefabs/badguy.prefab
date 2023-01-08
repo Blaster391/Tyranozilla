@@ -137,3 +137,6 @@ MonoBehaviour:
   m_bulletPrefab: {fileID: 7376940331760486460, guid: 85b6f06158194214995d780e1359c2d4, type: 3}
   m_aggroRange: 4
   m_attackCooldown: 2.5
+  m_useClips:
+  - {fileID: 8300000, guid: c1d3f60fb788866408f7097d99e90576, type: 3}
+  - {fileID: 8300000, guid: 97c5fea4b3c224b4788ffebe94671280, type: 3}

@@ -146,3 +146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_uses: 3
   m_emptySprite: {fileID: 21300000, guid: 0db64eb0a8e24e64aa6996ca8cf3b75d, type: 3}
+  m_splashPrefab: {fileID: 6323601526380210880, guid: 722ca0573ecc794408dafe45bfb40ad0, type: 3}
+  m_pourClip: {fileID: 8300000, guid: 057cc8e66e95f0348be0811fd2033149, type: 3}
+  m_emptyClip: {fileID: 8300000, guid: a8a2b19c1646fc242ac207e2d3d0aff9, type: 3}

@@ -6,10 +6,13 @@ public class Spade : Grabable
 {
     [SerializeField]
     private GameObject m_flowerPrefab = null;
-
+    [SerializeField]
+    private AudioClip m_swingClip;
     public override void Use(Vector2 _targetPosition)
     {
-        var results = Physics2D.RaycastAll(transform.position, Vector2.down);
+        FindObjectOfType<GameMaster>().PlayAudio(m_swingClip, 1.0f, gameObject);
+
+        var results = Physics2D.CircleCastAll(_targetPosition, 0.25f, Vector2.down);
         foreach (var result in results)
         {
             var plant = result.collider.GetComponent<Plant>();

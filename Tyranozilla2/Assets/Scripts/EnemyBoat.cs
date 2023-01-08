@@ -10,12 +10,18 @@ public class EnemyBoat : MonoBehaviour
     [SerializeField]
     private float m_speed = 5.0f;
 
+    [SerializeField]
+    private List<AudioClip> m_boatClips;
+
+
     private SpriteRenderer m_spriteRenderer = null;
 
     // Start is called before the first frame update
     void Start()
     {
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+
+        FindObjectOfType<GameMaster>().PlayAudio(m_boatClips, 1.0f, gameObject);
     }
 
     // Update is called once per frame

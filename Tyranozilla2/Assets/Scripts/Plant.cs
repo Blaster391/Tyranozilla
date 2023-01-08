@@ -26,9 +26,9 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_level1.sprite = m_level1Sprite[Random.Range(0, m_level1Sprite.Count - 1)];
-        m_level2.sprite = m_level2Sprite[Random.Range(0, m_level1Sprite.Count - 1)];
-        m_level3.sprite = m_level3Sprite[Random.Range(0, m_level1Sprite.Count - 1)];
+        m_level1.sprite = m_level1Sprite[Random.Range(0, m_level1Sprite.Count)];
+        m_level2.sprite = m_level2Sprite[Random.Range(0, m_level2Sprite.Count)];
+        m_level3.sprite = m_level3Sprite[Random.Range(0, m_level3Sprite.Count)];
 
         m_level1.gameObject.SetActive(true);
         m_level2.gameObject.SetActive(false);

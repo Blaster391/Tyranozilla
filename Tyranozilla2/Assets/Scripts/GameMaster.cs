@@ -10,6 +10,15 @@ public class GameMaster : MonoBehaviour
     private GameObject m_gameOverPanel = null;
 
     [SerializeField]
+    private AudioSource m_musicSource = null;
+
+    [SerializeField]
+    private AudioClip m_gameOverClip = null;
+
+    [SerializeField]
+    private AudioSource m_audioSourcePrefab = null;
+
+    [SerializeField]
     private Text m_liveScoreText = null;
     [SerializeField]
     private Text m_liveHPText = null;
@@ -51,6 +60,9 @@ public class GameMaster : MonoBehaviour
         m_scoreText.text = $"Earnings - ${m_score}";
         m_timeText.text = $"Time on farm - {m_time:.00}";
         m_killsText.text = $"Bad guys repelled - {m_kills}";
+
+        m_musicSource.Stop();
+        m_musicSource.PlayOneShot(m_gameOverClip);
     }
 
     // Start is called before the first frame update
@@ -107,5 +119,20 @@ public class GameMaster : MonoBehaviour
 
             m_gameOverTime += Time.deltaTime;
         }
+    }
+
+    public void PlayAudio(List<AudioClip> _clips, float _volume, GameObject _trackingObject)
+    {
+        PlayAudio(_clips[Random.Range(0, _clips.Count)], _volume, _trackingObject);
+    }
+
+    public void PlayAudio(AudioClip _clip, float _volume, GameObject _trackingObject)
+    {
+        AudioSource audioSource = Instantiate(m_audioSourcePrefab);
+        audioSource.clip = _clip;
+        audioSource.volume = _volume;
+        audioSource.Play();
+
+        audioSource.GetComponent<AudioObject>().SetTrackingObject(_trackingObject);
     }
 }
