@@ -46,8 +46,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int m_health = 5;
 
-    private bool m_gameOver = false;
-
     private float m_currentUseCooldown = 0.0f;
 
     private float m_currentAnimationTick = 0.0f;
@@ -55,6 +53,7 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D m_rigidbody = null;
     private SpriteRenderer m_renderer = null;
+    private GameMaster m_gameMaster = null;
 
     public void SetHeldObject(Grabable _heldItem)
     {
@@ -67,10 +66,16 @@ public class Player : MonoBehaviour
         return !m_renderer.flipX;
     }
 
+    public int GetHealth()
+    {
+        return m_health;
+    }
+
     void Start()
     {
         m_rigidbody = GetComponent<Rigidbody2D>();
         m_renderer = GetComponent<SpriteRenderer>();
+        m_gameMaster = FindObjectOfType<GameMaster>();
 
         Physics2D.IgnoreLayerCollision(0, 8);
         Physics2D.IgnoreLayerCollision(8, 8);
@@ -79,7 +84,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(m_gameOver)
+        if(m_gameMaster.IsGameOver())
         {
             return;
         }
@@ -293,7 +298,7 @@ public class Player : MonoBehaviour
 
     public void GameOver()
     {
-        m_gameOver = true;
+        m_gameMaster.GameOver();
     }
 
     public void TakeDamage()

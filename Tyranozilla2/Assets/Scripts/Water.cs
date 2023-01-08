@@ -7,9 +7,10 @@ public class Water : MonoBehaviour
     [SerializeField]
     private GameObject m_boatPrefab;
 
+    private GameMaster m_gameMaster = null;
     void Start()
     {
-        
+        m_gameMaster = FindObjectOfType<GameMaster>();
     }
 
     // Update is called once per frame
@@ -32,6 +33,8 @@ public class Water : MonoBehaviour
             var boat = Instantiate(m_boatPrefab);
             boat.transform.position = enemy.transform.position;
             Destroy(collision.gameObject);
+
+            m_gameMaster.AddKill();
         }
         else
         {

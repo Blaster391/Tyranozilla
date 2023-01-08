@@ -19,6 +19,8 @@ public class Enemy : Grabable
 
     private SpriteRenderer m_renderer = null;
 
+    private GameMaster m_gameMaster = null;
+
     public override void Use(Vector2 _targetPosition)
     {
 
@@ -28,12 +30,13 @@ public class Enemy : Grabable
     {
         m_renderer = GetComponent<SpriteRenderer>();
         m_player = FindObjectOfType<Player>();
+        m_gameMaster = FindObjectOfType<GameMaster>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(m_held)
+        if(m_held || m_gameMaster.IsGameOver())
         {
             return;
         }

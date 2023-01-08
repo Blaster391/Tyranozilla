@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Flower : Grabable
 {
-
+    private GameMaster m_gameMaster = null;
+    void Start()
+    {
+        m_gameMaster = FindObjectOfType<GameMaster>();
+    }
     public override void Use(Vector2 _targetPosition)
     {
         var objects = Physics2D.OverlapPointAll(_targetPosition);
@@ -12,6 +16,7 @@ public class Flower : Grabable
         {
             if(obj.GetComponent<Shop>() != null)
             {
+                m_gameMaster.AddScore();
                 Destroy(gameObject);
             }
         }
